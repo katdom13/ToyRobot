@@ -41,7 +41,7 @@ class Robot(object):
         try:
             position["d"] = DIR_STATE[position["d"]][direction]
             self.position = Position(position)
-        except InvalidPosition:
+        except (InvalidPosition, KeyError):
             pass
 
     def report(self):

@@ -26,8 +26,16 @@ def test_valid_files(capsys):
     assert out == "3,3,NORTH\n"
 
 
-def test_invalid_file(capsys):
+def test_valid_file_with_invalid_commands(capsys):
     filename = os.path.join(BASE_DIR, "examples", "sample4.txt")
+
+    main(filename)
+    out, err = capsys.readouterr()
+    assert out == "1,1,EAST\n"
+
+
+def test_invalid_file(capsys):
+    filename = os.path.join(BASE_DIR, "examples", "sample5.txt")
 
     main(filename)
     out, err = capsys.readouterr()

@@ -52,6 +52,11 @@ def test_invalid_move(robot):
     assert old_report == new_report
 
 
+def test_move_no_position(robot):
+    robot.move()
+    assert not robot.position
+
+
 def test_rotate(robot):
     position = dict(x=0, y=0, d="NORTH")
     robot.place(position)
@@ -73,6 +78,22 @@ def test_rotate(robot):
 
     robot.rotate("RIGHT")
     assert robot.position.d == "NORTH"
+
+
+def test_invalid_rotate(robot):
+    position = dict(x=0, y=0, d="NORTH")
+    robot.place(position)
+
+    robot.rotate("L")
+    assert robot.position.d == 'NORTH'
+
+
+def test_rotate_no_position(robot):
+    robot.rotate("LEFT")
+    assert not robot.position
+
+    robot.rotate("RIGHT")
+    assert not robot.position
 
 
 def test_valid_place(robot):
